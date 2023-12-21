@@ -57,7 +57,6 @@ const CommentCard = ({
         </View>
       </View>
       <Text style={styles.reply}>Reply</Text>
-      <View>{children}</View>
 
       <View style={styles.footer}>
         <View style={styles.likes}>
@@ -100,7 +99,7 @@ const properWidthOfMainCard = screenWidth - 40;
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
+    flexGrow: 1,
     borderRadius: 15,
     backgroundColor: '#FFFFFF',
     ...elevationStyle,
@@ -108,8 +107,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     marginVertical: 15,
-    justifyContent: 'space-between',
-    alignSelf: 'center',
+    justifyContent: 'space-around',
   },
   container: {
     flex: 1,
@@ -153,6 +151,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
+    marginTop: 10,
   },
   likes: {
     flexDirection: 'row',
@@ -203,5 +202,6 @@ const styles = StyleSheet.create({
   },
   reply: {
     color: Colors.primary,
+    marginVertical: 10,
   },
 });

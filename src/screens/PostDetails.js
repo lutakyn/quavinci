@@ -6,7 +6,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  FlatList,
+  Image,
   Pressable,
   KeyboardAvoidingView,
 } from 'react-native';
@@ -36,8 +36,7 @@ const PostDetails = props => {
   const {navigation, route} = props;
   const {postDetails} = route.params;
   const [reply, setReply] = useState('');
-  const {title, subtitle, author, time, content} = postDetails;
-  console.log(title, subtitle, author, time, content);
+  const {title, subtitle, author, time, content, image} = postDetails;
 
   return (
     <View style={styles.container}>
@@ -54,7 +53,10 @@ const PostDetails = props => {
           author={author}
           subtitle={subtitle}
           time={time}>
-          <Text> {content}</Text>
+          {image ? (
+            <Image source={image} resizeMethod="contain" style={styles.hero} />
+          ) : null}
+          {content ? <Text> {content}</Text> : null}
         </Card>
         <CommentCard {...comment} />
       </ScrollView>
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     height: 40,
-    color: '#ffffff',
+    color: 'black',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: Colors.grey,
@@ -180,5 +182,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.primary,
     marginHorizontal: 10,
+  },
+  hero: {
+    width: 300,
+    height: 150,
+    borderRadius: 10,
   },
 });

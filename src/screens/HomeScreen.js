@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
+  Image,
 } from 'react-native';
 import {Card, TrendingCard} from '../components';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -21,22 +22,23 @@ const data = [
     image: '',
     author: 'by internetPositif',
     time: '16h',
-    content: 'more content',
+    content:
+      'Poison ivy grew through the fence they said was impenetrable.Green should have smelled more tranquil, but somehow it just tasted rotten.',
     type: 'trending',
   },
   {
     title: 'r/Coronavirus',
     subtitle: 'Navigating the new Central',
-    image: '',
+    image: require('../images/icons/ice.jpeg'),
     author: 'by internetPositif',
     time: '16h',
-    content: 'more content',
+    content: '',
     type: 'post',
   },
   {
     title: 'r/books',
     subtitle: 'Navigation for change',
-    image: '',
+    image: require('../images/icons/ice.jpeg'),
     author: 'by coochiebreakfast',
     time: '18h',
     content: 'more content',
@@ -45,7 +47,7 @@ const data = [
   {
     title: 'r/authors',
     subtitle: 'Navigation for change',
-    image: '',
+    image: require('../images/icons/ice.jpeg'),
     author: 'by coochiebreakfast',
     time: '18h',
     content: 'more content',
@@ -83,7 +85,14 @@ const HomeScreen = props => {
               author={item.author}
               subtitle={item.subtitle}
               time={item.time}>
-              <Text> {item.content}</Text>
+              {item.image ? (
+                <Image
+                  source={item.image}
+                  resizeMethod="contain"
+                  style={styles.hero}
+                />
+              ) : null}
+              {item.content ? <Text> {item.content}</Text> : null}
             </Card>
           </Pressable>
         );
@@ -164,5 +173,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     paddingBottom: 10,
+  },
+  hero: {
+    width: 300,
+    height: 150,
+    borderRadius: 10,
   },
 });

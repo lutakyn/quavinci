@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, Text, Pressable, View} from 'react-native';
+import {StyleSheet, Dimensions, Text, Image, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 import {
@@ -26,9 +26,10 @@ const TrendingCard = ({
       <View style={styles.divider} />
       <View style={styles.headerContainer}>
         <View style={styles.titleImageContainer}>
-          <View style={styles.image}>
-            <Text>LD</Text>
-          </View>
+          <Image
+            style={styles.image}
+            source={require('../images/icons/male.png')}
+          />
           <Text style={styles.title}>{title}</Text>
         </View>
         <FontAwesomeIcon icon={faEllipsisVertical} />
@@ -110,9 +111,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 30,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   title: {
     fontSize: 15,
@@ -157,7 +155,7 @@ const styles = StyleSheet.create({
   divider: {
     width: screenWidth - 80,
     marginVertical: 8,
-    borderWidth: 0.85,
+    borderWidth: 0.8,
     borderRadius: 8,
     alignSelf: 'center',
     backgroundColor: '#999',

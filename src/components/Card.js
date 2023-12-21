@@ -79,8 +79,7 @@ const properWidthOfMainCard = screenWidth - 40;
 
 const styles = StyleSheet.create({
   main: {
-    width: properWidthOfMainCard,
-    height: properWidthOfMainCard * heightToWidthRatio,
+    flexGrow: 1,
     borderRadius: 15,
     backgroundColor: '#FFFFFF',
     ...elevationStyle,
@@ -88,8 +87,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     marginVertical: 15,
-    justifyContent: 'space-around',
-    alignSelf: 'center',
+    justifyContent: 'space-between',
+    // alignSelf: 'center',
   },
   container: {
     flex: 1,
@@ -98,13 +97,14 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    marginVertical: 5,
+    marginVertical: 10,
     justifyContent: 'space-between',
   },
   titleImageContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
   },
   image: {
     width: 30,
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
+    marginTop: 15,
   },
   likes: {
     flexDirection: 'row',
