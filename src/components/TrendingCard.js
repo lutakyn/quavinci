@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Dimensions,
-  Text,
-  Image,
-  View,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {StyleSheet, Dimensions, Text, Pressable, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 import {
@@ -16,23 +9,30 @@ import {
   faShare,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import {Fonts, Images} from '../theme';
-import maleAvatar from '../images/icons/male.png';
+import {Colors, Fonts} from '../theme';
 
-const Card = ({title, image, subtitle, author, children, time, props}) => {
+const TrendingCard = ({
+  title,
+  image,
+  subtitle,
+  author,
+  children,
+  time,
+  props,
+}) => {
   return (
     <View style={styles.main} {...props}>
+      <Text style={styles.trendingText}>Trending</Text>
+      <View style={styles.divider} />
       <View style={styles.headerContainer}>
         <View style={styles.titleImageContainer}>
-          <Image
-            style={styles.image}
-            source={require('../images/icons/male.png')}
-          />
+          <View style={styles.image}>
+            <Text>LD</Text>
+          </View>
           <Text style={styles.title}>{title}</Text>
         </View>
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </View>
-      <Text style={styles.subtitle}>{subtitle}</Text>
       <View>{children}</View>
       <View style={styles.timeline}>
         <Text style={styles.timelineText}>{author}</Text>
@@ -59,7 +59,7 @@ const Card = ({title, image, subtitle, author, children, time, props}) => {
   );
 };
 
-export default Card;
+export default TrendingCard;
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -109,6 +109,10 @@ const styles = StyleSheet.create({
   image: {
     width: 30,
     height: 30,
+    borderRadius: 30,
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 15,
@@ -145,5 +149,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 15,
     width: '30%',
+  },
+  trendingText: {
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  divider: {
+    width: screenWidth - 80,
+    marginVertical: 8,
+    borderWidth: 0.85,
+    borderRadius: 8,
+    alignSelf: 'center',
+    backgroundColor: '#999',
+    borderColor: '#999',
   },
 });

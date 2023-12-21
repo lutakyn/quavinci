@@ -1,3 +1,6 @@
 import Card from './Card';
+import TrendingCard from './TrendingCard';
+import CommentCard from './CommentCard';
+import DetailsHeader from './DetailsHeader';
 
-export {Card};
+export {Card, TrendingCard, CommentCard, DetailsHeader};

@@ -1,42 +1,52 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
-  TouchableOpacity,
+  TextInput,
   Text,
   View,
   StyleSheet,
   ScrollView,
   FlatList,
   Pressable,
+  KeyboardAvoidingView,
 } from 'react-native';
-import {Card} from '../components';
+import {Card, CommentCard, DetailsHeader} from '../components';
 import {Colors, Fonts} from '../theme';
+
+const comment = {
+  title: 'HelloWorld404',
+  subtitle: 'What is the new normal',
+  comments: [
+    {
+      user: 'BlueSky312',
+      comment: 'Her death be no pity',
+    },
+    {
+      user: 'BubbleWrapMan',
+      comment: "Don't lift it, search for vaccine",
+    },
+    {
+      user: 'BubbleWrapMan',
+      comment: "Don't lift it, search for vaccine",
+    },
+  ],
+};
 
 const PostDetails = props => {
   const {navigation, route} = props;
   const {postDetails} = route.params;
+  const [reply, setReply] = useState('');
   const {title, subtitle, author, time, content} = postDetails;
   console.log(title, subtitle, author, time, content);
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.image}>
-          <Text>LD</Text>
-        </View>
-        <View style={styles.titleTimeContainer}>
-          <Text style={styles.title}>{title}</Text>
-          <View style={styles.timeline}>
-            <Text style={styles.timelineText}>{author}</Text>
-            <View style={styles.dot} />
-            <Text style={[styles.timelineText]}>{time}</Text>
-            <View style={styles.dot} />
-          </View>
-        </View>
-        <View style={styles.join}>
-          <Text style={styles.joinText}>JOIN</Text>
-        </View>
-      </View>
+      <DetailsHeader
+        title={title}
+        author={author}
+        subtitle={subtitle}
+        time={time}
+      />
       <ScrollView contentContainerStyle={styles.scroll}>
         <Card
           key={title}
@@ -46,7 +56,22 @@ const PostDetails = props => {
           time={time}>
           <Text> {content}</Text>
         </Card>
+        <CommentCard {...comment} />
       </ScrollView>
+
+      <View style={styles.replyBoxContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => setReply(text)}
+          value={reply}
+          placeholderTextColor={Colors.grey}
+          underlineColorAndroid="transparent"
+          placeholder="Add a comment"
+        />
+        <View style={styles.sendButton}>
+          <Text>Hi</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -98,7 +123,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    padding: 10,
+    paddingBottom: 10,
   },
   timeline: {
     flexDirection: 'row',
@@ -120,5 +145,40 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.grey,
     alignSelf: 'center',
     marginHorizontal: 8,
+  },
+  replyBoxContainer: {
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    width: screenWidth,
+    // position: 'absolute',
+    top: 0,
+    right: 0,
+    height: 50,
+    // backgroundColor: Colors.primary,
+    // borderRadius: 100,
+    flexDirection: 'row',
+    textAlignVertical: 'bottom',
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingHorizontal: 10,
+  },
+  input: {
+    width: '80%',
+    height: 40,
+    color: '#ffffff',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: Colors.grey,
+    backgroundColor: 'white',
+    paddingLeft: 5
+  },
+  sendButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.primary,
+    marginHorizontal: 10,
   },
 });

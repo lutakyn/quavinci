@@ -6,14 +6,24 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
+  Pressable,
   FlatList,
 } from 'react-native';
-import {Card} from '../components';
+import {Card, TrendingCard} from '../components';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {Colors} from '../theme';
+
 const data = [
+  {
+    title: 'r/AskReddit',
+    subtitle: 'Navigating the new Central',
+    image: '',
+    author: 'by internetPositif',
+    time: '16h',
+    content: 'more content',
+    type: 'trending',
+  },
   {
     title: 'r/Coronavirus',
     subtitle: 'Navigating the new Central',
@@ -21,6 +31,7 @@ const data = [
     author: 'by internetPositif',
     time: '16h',
     content: 'more content',
+    type: 'post',
   },
   {
     title: 'r/books',
@@ -29,6 +40,7 @@ const data = [
     author: 'by coochiebreakfast',
     time: '18h',
     content: 'more content',
+    type: 'post',
   },
   {
     title: 'r/authors',
@@ -37,25 +49,45 @@ const data = [
     author: 'by coochiebreakfast',
     time: '18h',
     content: 'more content',
+    type: 'post',
   },
 ];
 
 const HomeScreen = props => {
   const {navigation} = props;
+  const {title, subtitle, author, time, content} = data[0];
+  console.log(title, subtitle, author, time, content);
+
   const SingleCard = ({item}) => {
-    return (
-      <Card
-        key={item.title}
-        title={item.title}
-        author={item.author}
-        subtitle={item.subtitle}
-        time={item.time}
-        navigate={() =>
-          navigation.navigate('PostDetailsScreen', {postDetails: item})
-        }>
-        <Text> {item.content}</Text>
-      </Card>
-    );
+    switch (item.type) {
+      case 'trending':
+        return (
+          <TrendingCard
+            key={item.title}
+            title={item.title}
+            author={item.author}
+            subtitle={item.subtitle}
+            time={item.time}>
+            <Text> {item.content}</Text>
+          </TrendingCard>
+        );
+      case 'post':
+        return (
+          <Pressable
+            onPress={() =>
+              navigation.navigate('PostDetailsScreen', {postDetails: item})
+            }>
+            <Card
+              key={item.title}
+              title={item.title}
+              author={item.author}
+              subtitle={item.subtitle}
+              time={item.time}>
+              <Text> {item.content}</Text>
+            </Card>
+          </Pressable>
+        );
+    }
   };
 
   return (
@@ -130,7 +162,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 10,
+    justifyContent: 'flex-start',
+    paddingBottom: 10,
   },
 });

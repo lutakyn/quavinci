@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Dimensions,
-  Text,
-  Image,
-  View,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {StyleSheet, Dimensions, Text, Image, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 import {
@@ -16,28 +9,56 @@ import {
   faShare,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import {Fonts, Images} from '../theme';
-import maleAvatar from '../images/icons/male.png';
+import {Colors, Fonts} from '../theme';
 
-const Card = ({title, image, subtitle, author, children, time, props}) => {
+const CommentCard = ({
+  title,
+  subtitle,
+  comments,
+  replies,
+  children,
+  time,
+  props,
+}) => {
+  console.log({title, subtitle, comments, replies, children, time, props});
   return (
     <View style={styles.main} {...props}>
+      <Text style={styles.trendingText}>Best Comments</Text>
       <View style={styles.headerContainer}>
         <View style={styles.titleImageContainer}>
           <Image
             style={styles.image}
             source={require('../images/icons/male.png')}
           />
-          <Text style={styles.title}>{title}</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.timelineText}>{title}</Text>
+            <Text style={styles.title}>{subtitle}</Text>
+          </View>
         </View>
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </View>
-      <Text style={styles.subtitle}>{subtitle}</Text>
-      <View>{children}</View>
-      <View style={styles.timeline}>
-        <Text style={styles.timelineText}>{author}</Text>
-        <Text style={[styles.time, styles.timelineText]}>{time}</Text>
+      <View style={styles.mainCommentsContainer}>
+        <View style={styles.verticalLine} />
+        <View>
+          {comments.map(comment => {
+            return (
+              <View style={styles.commentsContainer}>
+                <Image
+                  style={styles.image}
+                  source={require('../images/icons/male.png')}
+                />
+                <View>
+                  <Text style={styles.timelineText}>{comment.user}</Text>
+                  <Text style={styles.title}>{comment.comment}</Text>
+                </View>
+              </View>
+            );
+          })}
+        </View>
       </View>
+      <Text style={styles.reply}>Reply</Text>
+      <View>{children}</View>
+
       <View style={styles.footer}>
         <View style={styles.likes}>
           <FontAwesomeIcon icon={faArrowUp} />
@@ -59,7 +80,7 @@ const Card = ({title, image, subtitle, author, children, time, props}) => {
   );
 };
 
-export default Card;
+export default CommentCard;
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -79,8 +100,7 @@ const properWidthOfMainCard = screenWidth - 40;
 
 const styles = StyleSheet.create({
   main: {
-    width: properWidthOfMainCard,
-    height: properWidthOfMainCard * heightToWidthRatio,
+    flex: 1,
     borderRadius: 15,
     backgroundColor: '#FFFFFF',
     ...elevationStyle,
@@ -88,7 +108,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
     marginVertical: 15,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignSelf: 'center',
   },
   container: {
@@ -98,7 +118,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    marginVertical: 5,
     justifyContent: 'space-between',
   },
   titleImageContainer: {
@@ -106,14 +125,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  titleContainer: {
+    marginLeft: 10,
+    paddingTop: 8,
+  },
   image: {
     width: 30,
     height: 30,
+    borderRadius: 30,
   },
   title: {
     fontSize: 15,
     fontWeight: 'bold',
-    marginLeft: 10,
   },
   time: {
     marginLeft: 10,
@@ -145,5 +168,40 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 15,
     width: '30%',
+  },
+  trendingText: {
+    fontSize: 20,
+    fontWeight: '500',
+    marginVertical: 8,
+  },
+  divider: {
+    width: screenWidth - 80,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'center',
+    backgroundColor: '#999',
+    borderColor: '#999',
+  },
+  mainCommentsContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 15,
+    marginVertical: 10,
+  },
+  commentsContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  verticalLine: {
+    margin: 8,
+    borderWidth: 0.85,
+    borderRadius: 8,
+    alignSelf: 'stretch',
+    backgroundColor: '#999',
+    borderColor: '#999',
+    marginTop: 20,
+  },
+  reply: {
+    color: Colors.primary,
   },
 });
