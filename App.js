@@ -78,27 +78,27 @@ function BottomTabNavigation() {
             <FontAwesomeIcon icon={faGlobe} color={color} />
           ),
 
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
-        name="JobScreen"
+        name="CommentScreen"
         component={HomeScreen}
         options={{
           tabBarIcon: ({color, size}) => (
             <FontAwesomeIcon icon={faComment} color={color} />
           ),
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <BottomTab.Screen
-        name="JobScreens"
+        name="InboxScreen"
         component={HomeScreen}
         options={{
           tabBarIcon: ({color, size}) => (
             <FontAwesomeIcon icon={faInbox} color={color} />
           ),
-          headerShown: true,
+          headerShown: false,
         }}
       />
     </BottomTab.Navigator>

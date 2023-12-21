@@ -1,5 +1,49 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+Follow the steps to use the project.
+
+## Prerequisites
+
+- [Node.js > 16](https://nodejs.org) and npm (Recommended: Use [nvm](https://github.com/nvm-sh/nvm))
+- [Watchman](https://facebook.github.io/watchman)
+- [Xcode 15](https://developer.apple.com/xcode)
+- [Cocoapods 1.2.1](https://cocoapods.org)
+- [JDK > 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- [Android Studio and Android SDK](https://developer.android.com/studio)
+
+## Base dependencies
+
+- [@fortawesome/fontawesome-svg-core]
+- [@fortawesome/free-solid-svg-icons]
+- [@fortawesome/react-native-fontawesome]
+- [@react-navigation/bottom-tabs]
+- [react-navigation]
+- [react-native-screens]
+- [react-native-safe-area-context]
+- [react-native-gesture-handler]
+
+## Usage
+
+
+- A repository created from a template starts with a single commit.
+- Commits to a repository created from a template do appear in your contribution graph.
+- Creating a repository from a template starts a new project quickly.
+
+## Folder structure
+
+This project follows a very simple project structure:
+
+- `src`: This folder is the main container of all the code inside your application.
+  - `screens`: Folder that contains all your application screens/features.
+    - `Screen`: Each screen should be stored inside its folder and inside it a file for its code and a separate one for the styles and tests.
+      - `Screen.js`
+  - `components`: Folder to store any common component that you use     through
+  - `assets`: Asset folder to store all images, vectors, etc.
+  - `components`: Folder to store any common component that you use through your app (such as a generic button)
+  - `theme`: Folder to store all the styling concerns related to the application theme.
+- `App.js`: Main component that starts your whole app.
+- `index.js`: Entry point of your application as per React-Native standards.
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
@@ -7,6 +51,14 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 ## Step 1: Start the Metro Server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+You would need to install the packages for the project
+```bash
+# using npm
+npm install
+
+# OR using Yarn
+yarn install
+```
 
 To start Metro, run the following command from the _root_ of your React Native project:
 
@@ -46,18 +98,6 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
 
 ### Now what?
 

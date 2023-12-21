@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import {Card, CommentCard, DetailsHeader} from '../components';
 import {Colors, Fonts} from '../theme';
-
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 const comment = {
   title: 'HelloWorld404',
   subtitle: 'What is the new normal',
@@ -71,7 +72,7 @@ const PostDetails = props => {
           placeholder="Add a comment"
         />
         <View style={styles.sendButton}>
-          <Text>Hi</Text>
+          <FontAwesomeIcon icon={faPaperPlane} color="white" />
         </View>
       </View>
     </View>
