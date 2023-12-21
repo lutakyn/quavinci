@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.grey,
     backgroundColor: 'white',
-    paddingLeft: 5
+    paddingLeft: 5,
   },
   sendButton: {
     width: 40,
