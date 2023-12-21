@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, Text, View} from 'react-native';
+import {StyleSheet, Dimensions, Text, Pressable, View} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 import {
@@ -7,44 +7,60 @@ import {
   faArrowUp,
   faComment,
   faShare,
+  faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
 import {Fonts} from '../theme';
 
-const Card = ({title, image, subtitle, author, children, time, props}) => {
+const Card = ({
+  title,
+  image,
+  subtitle,
+  author,
+  children,
+  time,
+  navigate,
+  props,
+}) => {
   return (
-    <View style={styles.main} {...props}>
-      <View style={styles.headerContainer}>
-        <View style={styles.titleImageContainer}>
-          <View style={styles.image}>
-            <Text>LD</Text>
+    <View style={{flex: 1}} {...props}>
+      <Pressable
+        style={styles.main}
+        onPress={() => {
+          navigate();
+        }}>
+        <View style={styles.headerContainer}>
+          <View style={styles.titleImageContainer}>
+            <View style={styles.image}>
+              <Text>LD</Text>
+            </View>
+            <Text style={styles.title}>{title}</Text>
           </View>
-          <Text style={styles.title}>{title}</Text>
+          <FontAwesomeIcon icon={faEllipsisVertical} />
         </View>
-        <Text>LD</Text>
-      </View>
-      <Text style={styles.subtitle}>{subtitle}</Text>
-      <View>{children}</View>
-      <View style={styles.timeline}>
-        <Text style={styles.timelineText}>{author}</Text>
-        <Text style={[styles.time, styles.timelineText]}>{time}</Text>
-      </View>
-      <View style={styles.footer}>
-        <View style={styles.likes}>
-          <FontAwesomeIcon icon={faArrowUp} />
-          <Text>1.3</Text>
-          <FontAwesomeIcon icon={faArrowDown} />
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <View>{children}</View>
+        <View style={styles.timeline}>
+          <Text style={styles.timelineText}>{author}</Text>
+          <Text style={[styles.time, styles.timelineText]}>{time}</Text>
         </View>
-        <View style={styles.comments}>
-          <FontAwesomeIcon icon={faComment} />
+        <View style={styles.footer}>
+          <View style={styles.likes}>
+            <FontAwesomeIcon icon={faArrowUp} />
+            <Text>1.3</Text>
+            <FontAwesomeIcon icon={faArrowDown} />
+          </View>
+          <View style={styles.comments}>
+            <FontAwesomeIcon icon={faComment} />
 
-          <Text>1.3</Text>
-        </View>
-        <View style={styles.share}>
-          <FontAwesomeIcon icon={faShare} />
+            <Text>1.3</Text>
+          </View>
+          <View style={styles.share}>
+            <FontAwesomeIcon icon={faShare} />
 
-          <Text>Share</Text>
+            <Text>Share</Text>
+          </View>
         </View>
-      </View>
+      </Pressable>
     </View>
   );
 };

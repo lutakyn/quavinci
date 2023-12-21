@@ -40,7 +40,8 @@ const data = [
   },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = props => {
+  const {navigation} = props;
   const SingleCard = ({item}) => {
     return (
       <Card
@@ -48,7 +49,10 @@ const HomeScreen = () => {
         title={item.title}
         author={item.author}
         subtitle={item.subtitle}
-        time={item.time}>
+        time={item.time}
+        navigate={() =>
+          navigation.navigate('PostDetailsScreen', {postDetails: item})
+        }>
         <Text> {item.content}</Text>
       </Card>
     );

@@ -39,6 +39,7 @@ import {
   faGlobe,
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
+import PostDetails from './src/screens/PostDetails';
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -127,9 +128,14 @@ const App = () => {
             component={BottomTabNavigation}
           />
           <Stack.Screen
-            options={{headerShown: true}}
+            options={{headerShown: false}}
             name="HomeScreen"
             component={HomeScreen}
+          />
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="PostDetailsScreen"
+            component={PostDetails}
           />
         </Stack.Navigator>
       </SafeAreaView>
