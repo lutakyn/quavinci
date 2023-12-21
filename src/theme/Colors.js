@@ -1,6 +1,6 @@
 const colors = {
-  primary: 'rgb(0, 124, 146)',
-  grey: '#F7F7F7',
+  primary: '#ff4500',
+  grey: '#9B9998',
 };
 
 export default colors;

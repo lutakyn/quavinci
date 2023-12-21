@@ -1,6 +1,6 @@
 const type = {
   base: 'Avenir-Book',
-  emphasis: 'HelveticaNeue-Italic',
+  italic: 'HelveticaNeue-Italic',
   Roboto: 'Roboto',
   normal: {
     fontFamily: 'Avenir-Book',
@@ -25,12 +25,17 @@ const style = {
     fontSize: size.h2,
   },
   h3: {
-    fontFamily: type.emphasis,
+    fontFamily: type.italic,
     fontSize: size.h3,
   },
   normal: {
     fontFamily: type.base,
     fontSize: size.regular,
+  },
+  light: {
+    fontFamily: type.base,
+    fontWeight: '500',
+    color: '#999',
   },
 };
 

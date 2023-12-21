@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -5,7 +6,7 @@
  * @format
  * author: Lutherking Dotse
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
   SafeAreaView,
@@ -30,7 +31,14 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Colors as ThemeColors} from './src/theme';
 import HomeScreen from './src/screens/HomeScreen';
-
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faArrowDown,
+  faInbox,
+  faComment,
+  faGlobe,
+  faHome,
+} from '@fortawesome/free-solid-svg-icons';
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -42,6 +50,7 @@ function BottomTabNavigation() {
       screenOptions={{
         tabBarActiveTintColor: ThemeColors.primary,
         tabBarInactiveTintColor: ThemeColors.grey,
+        tabBarShowLabel: false,
         tabBarLabelStyle: {
           fontFamily: 'Nunito-Regular',
           fontSize: 14,
@@ -54,10 +63,9 @@ function BottomTabNavigation() {
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Homes',
-          // tabBarIcon: ({color, size}) => (
-          //   <VFIcon name={Images.ic_Notification} />
-          // ),
+          tabBarIcon: ({color, size}) => (
+            <FontAwesomeIcon icon={faHome} color={color} />
+          ),
           headerShown: false,
         }}
       />
@@ -65,8 +73,10 @@ function BottomTabNavigation() {
         name="WorldScreen"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'World',
-          // tabBarIcon: ({color, size}) => <VFIcon name={Images.ic_mobile} />,
+          tabBarIcon: ({color, size}) => (
+            <FontAwesomeIcon icon={faGlobe} color={color} />
+          ),
+
           headerShown: true,
         }}
       />
@@ -74,8 +84,19 @@ function BottomTabNavigation() {
         name="JobScreen"
         component={HomeScreen}
         options={{
-          tabBarLabel: 'Job',
-          // tabBarIcon: ({color, size}) => <VFIcon name={Images.ic_settings} />,
+          tabBarIcon: ({color, size}) => (
+            <FontAwesomeIcon icon={faComment} color={color} />
+          ),
+          headerShown: true,
+        }}
+      />
+      <BottomTab.Screen
+        name="JobScreens"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <FontAwesomeIcon icon={faInbox} color={color} />
+          ),
           headerShown: true,
         }}
       />
@@ -101,7 +122,7 @@ const App = () => {
 
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
-            options={{headerShown: true}}
+            options={{headerShown: false}}
             name="Home"
             component={BottomTabNavigation}
           />

@@ -1,5 +1,14 @@
 import React from 'react';
 import {StyleSheet, Dimensions, Text, View} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+import {
+  faArrowDown,
+  faArrowUp,
+  faComment,
+  faShare,
+} from '@fortawesome/free-solid-svg-icons';
+import {Fonts} from '../theme';
 
 const Card = ({title, image, subtitle, author, children, time, props}) => {
   return (
@@ -16,18 +25,24 @@ const Card = ({title, image, subtitle, author, children, time, props}) => {
       <Text style={styles.subtitle}>{subtitle}</Text>
       <View>{children}</View>
       <View style={styles.timeline}>
-        <Text>{author}</Text>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.timelineText}>{author}</Text>
+        <Text style={[styles.time, styles.timelineText]}>{time}</Text>
       </View>
       <View style={styles.footer}>
         <View style={styles.likes}>
+          <FontAwesomeIcon icon={faArrowUp} />
           <Text>1.3</Text>
+          <FontAwesomeIcon icon={faArrowDown} />
         </View>
         <View style={styles.comments}>
+          <FontAwesomeIcon icon={faComment} />
+
           <Text>1.3</Text>
         </View>
         <View style={styles.share}>
-          <Text>1.3</Text>
+          <FontAwesomeIcon icon={faShare} />
+
+          <Text>Share</Text>
         </View>
       </View>
     </View>
@@ -50,7 +65,7 @@ export const elevationStyle = {
 };
 
 const heightToWidthRatio = 0.6;
-const properWidthOfMainCard = screenWidth - 30;
+const properWidthOfMainCard = screenWidth - 40;
 
 const styles = StyleSheet.create({
   main: {
@@ -64,6 +79,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     marginVertical: 15,
     justifyContent: 'space-around',
+    alignSelf: 'center',
   },
   container: {
     flex: 1,
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     marginLeft: 10,
   },
@@ -97,26 +113,31 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
   },
   timeline: {
     flexDirection: 'row',
   },
+  timelineText: {
+    ...Fonts.style.light,
+  },
   footer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   likes: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 15,
+    width: '45%',
   },
   comments: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 15,
+    width: '35%',
   },
   share: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 15,
+    width: '30%',
   },
 });
